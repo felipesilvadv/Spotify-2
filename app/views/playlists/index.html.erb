@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container">
+  <div class="bg-faded p-4 my-4">
+    <!-- Welcome Message -->
+    <div class="text-center mt-4">
+      <h1 class="my-2">Playlists <%= image_tag('Playlists/img1.jpg', height:'52', width:'52') %></h1>
+        <hr class="divider">
+        <h2 class="text-center text-lg text-uppercase my-0">If you want, you can:
+        <strong><%= link_to 'Create Playlist', new_playlist_path %></strong>
+        </h2>
+      </div>
+    </div>
+  </div>
+  <hr class="divider">
+  <h2 class="text-center text-lg text-uppercase my-0">Or
+  <strong>Explore</strong>
+  </h2>
+  <hr class="divider">
+
+
+<div class = 'container'>
+
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Private</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @playlists.each do |playlist| %>
+      <% if playlist.public_list or playlist.user == current_user  %>
+      <tr>
+        <td><%= link_to playlist.name, playlist %></td>
+        <td><%= not playlist.public_list %></td>
+        <% if playlist.user == current_user%>
+        <td><%= link_to image_tag("Songs/trash.png", width:'25', height:'25'), playlist, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%= link_to image_tag("Songs/edit.svg", width:'20', height:'20'), edit_playlist_path(playlist) %></td>
+        <% end %>
+      </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+</div>

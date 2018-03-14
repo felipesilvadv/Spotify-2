@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @playlist.name %>
+</p>
+<!--
+<p>
+  <strong>Songs:</strong>
+  <%= @playlist.songs %>
+</p> -->
+<% if @playlist.user == current_user %>
+<%= link_to 'Edit', edit_playlist_path(@playlist)  %> |
+<%end %>
+<%= link_to 'Back', playlists_path %>
+

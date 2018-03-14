@@ -1,0 +1,24 @@
+
+1. Crear un perfil de usuario, donde tenga una foto de perfil, puedan editarse
+   ciertos aspectos del perfil y tenga comentarios.
+
+2. El usuario debe tener canciones favoritas. X
+
+3. Se deben poder crear listas temáticas, privadas o públicas, que tengan
+   calificación y sección de comentarios. X
+
+4. Boostrap.
+
+5. Imágenes y Aspecto sobre funcionalidad
+
+6. Comentarios, rate y playlist
+
+7. Reproducir canciones con api, si el usuario quiere, vincularlo con youtube (concatenar con busqueda de youtube)
+
+8. Tratar de hacer reproductor con mp3
+
+9. AL crear cancion, solo asociarla con album
+
+10. Cambiar canciones por íconos
+
+11. Seguir usuarios y playlists, arregalr parte social

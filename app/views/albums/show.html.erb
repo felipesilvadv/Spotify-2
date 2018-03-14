@@ -1,0 +1,65 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container">
+  <div class="bg-faded p-4 my-4">
+    <!-- Welcome Message -->
+    <div class="left-float">
+      <div align="center">
+    <%= image_tag(@album.image, width:'250', height:'250')%>
+  </div>
+
+  </div>
+  <div class="left-float">
+    <div align="left">
+        <h6><strong><%= @album.title %> </strong></h6>
+        <p><strong>Artist:</strong>
+        <%= link_to "#{@album.artist.name}", @album.artist unless @album.artist.nil? %></p>
+        <p><strong>Genre:</strong>
+          <%= link_to @album.genre.name, @album.genre unless @album.genre.nil? %></p>
+        <p><strong>Release Date:</strong>
+          <%= @album.date %></p>
+          <% if @album.user == current_user	 %>
+          <%= link_to image_tag("Songs/trash.png", width:'25', height:'25'), @album, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%= link_to image_tag("Songs/edit.svg", width:'20', height:'20'), edit_album_path(@album) %>
+
+          <%end	%>
+          <%= link_to 'All albums', albums_path %>
+    </div>
+  </div>
+  <div style="clear:both"></div>
+
+<hr class="divider">
+
+          <h4>Songs:</h4>
+            <% @songs = Song.where(:album_id => @album.id) %>
+
+            <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Artist</th>
+                    <th>Genre</th>
+                    <th colspan="3"></th>
+                  </tr>
+                </thead>
+
+
+                <tbody>
+                  <% @songs.each do |song| %>
+                    <tr>
+                      <td><%= link_to song.name, song %></td>
+                      <td><%= link_to "#{song.artist.name}", song.artist %></td>
+                      <td><%= song.genre.name %></td>
+                      <% if song.user == current_user %>
+                      <td><%= link_to image_tag("Songs/trash.png", width:'25', height:'25'), song, method: :delete, data: { confirm: 'Are you sure?' } %>
+                      <%= link_to image_tag("Songs/edit.svg", width:'20', height:'20'), edit_song_path(song) %></td>
+                      <% end %>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+
+
+
+    </div>
+  </div>

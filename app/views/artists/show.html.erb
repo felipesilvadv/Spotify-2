@@ -1,0 +1,91 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container">
+  <div class="bg-faded p-4 my-4">
+    <!-- Welcome Message -->
+    <div class="left-float">
+      <div align="center">
+    <%= image_tag(@artist.image, width:'250', height:'250')%>
+  </div>
+
+  </div>
+  <div class="left-float">
+    <div align="left">
+        <h6><strong><%= @artist.name %> </strong></h6>
+        <p><strong>Description:</strong>
+          <%= @artist.description %> </p>
+        <p><strong>Genre:</strong>
+          <%= link_to @artist.genre.name, @artist.genre unless @artist.genre.nil? %></p>
+        <p><strong>Nationality:</strong>
+          <%= @artist.nationality %></p>
+        <p><strong>Active time:</strong>
+          <%= @artist.active_time %></p>
+          <% if @artist.user == current_user	  %>
+          <%= link_to image_tag("Songs/trash.png", width:'25', height:'25'), @artist, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%= link_to image_tag("Songs/edit.svg", width:'20', height:'20'), edit_artist_path(@artist) %>
+          <%end %>
+          <%= link_to 'All artists', artists_path %>
+
+
+    </div>
+  </div>
+  <div style="clear:both"></div>
+  <hr class="divider">
+
+
+
+
+
+          <h3 class="text-uppercase my-0">Albums:</h3>
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Title</th>
+                  <th>Genre</th>
+                  <th colspan="2"></th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% @albums.each do |album| %>
+                  <tr>
+                    <div align="right">
+                    <td><%= image_tag(album.image, height:'50', width:'50') %></td>
+                  </div>
+                    <td><%= link_to album.title, album %></td>
+
+                    <td><%= album.genre.name %></td>
+                    <td><% if album.user == current_user %>
+                    <%= link_to image_tag("Songs/trash.png", width:'25', height:'25'), album, method: :delete, data: { confirm: 'Are you sure?' } %>
+                    <%= link_to image_tag("Songs/edit.svg", width:'20', height:'20'), edit_album_path(album) %></td>
+                    <% end %>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+
+
+            <hr class="divider">
+
+          <h3 class="text-uppercase my-0">News:</h3>
+          <table class="table table-bordered">
+            <tbody>
+            <% @posts.each do |post| %>
+                <tr>
+                  <td>
+                    <h4><strong>Title: <%= link_to post.title, post %></strong></h4>
+                    <h4>Content: <%= post.body %></h4>
+                    <h5>Related artist: <%= link_to "#{post.artist.name}", post.artist %></h5>
+                    <h5>Created by: <%= link_to "#{post.user.email}", "/users/profile/#{post.user.id}" %></h5>
+                    <% if post.user == current_user %>
+                        <%= link_to 'Edit', edit_post_path(post) %>
+                        <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+                    <% end %>
+                  </td>
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
+    </div>
+  </div>

@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container">
+  <div class="bg-faded p-4 my-4">
+    <!-- Welcome Message -->
+    <div class="text-center mt-4">
+      <h1 class="my-2">User Profile</h1>
+      <h3>Favorites<%= link_to image_tag('News/img1.png', height:'52', width:'52'), '/favorites' %></h3>
+        <hr class="divider">
+        <h2 class="text-uppercase my-0">Your information:</h2>
+      </div>
+    </div>
+  </div>
+  <h4 class="text-center text-lg text-uppercase my-0">
+    <strong>Email:</strong>
+    <%= @user.email %>
+  <hr class="divider"> </h4>
+
+
+
+  <h4 class="text-center text-lg text-uppercase my-0">
+    <%= image_tag(@user.image(:medium))%>
+
+  <hr class="divider"> </h4>
+
+  <h4 class = "text-center text-lg text-uppercase my-0"><strong><%= link_to "Edit your profile", edit_user_registration_path %></strong></h4>

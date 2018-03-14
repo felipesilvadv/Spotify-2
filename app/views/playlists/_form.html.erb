@@ -1,0 +1,37 @@
+<%= form_with(model: playlist, local: true) do |form| %>
+  <% if playlist.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(playlist.errors.count, "error") %> prohibited this playlist from being saved:</h2>
+
+      <ul>
+      <% playlist.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :playlist_name %>
+  </div>
+
+<!--  <div class="field">
+    <%= form.label :songs_id %>
+    <%= form.text_field :songs_id, id: :playlist_songs_id %>
+  </div> -->
+  <div class="field">
+    <%= form.label 'private' %>
+     <%= form.check_box :public_list, {}, 0, 1 %>
+
+  </div>
+
+  <div class="field">
+    <%= form.label :image %>
+    <%= form.file_field :image %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

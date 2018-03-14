@@ -1,0 +1,102 @@
+<div class="container">
+      <div class="bg-faded p-4 my-4">
+        <!-- Welcome Message -->
+        <div class="text-center mt-4">
+          <div class="text-heading text-muted text-lg">Welcome To</div>
+          <h1 class="my-2">Spotify2 <%= image_tag('rails.png', height: '50', width: '50') %></h1>
+          <div class="text-heading text-muted text-lg">By
+            <strong>Grupo 10</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-faded p-4 my-4">
+        <hr class="divider">
+        <h2 class="text-center text-lg text-uppercase my-0">The website
+          <strong>with your music</strong>
+        </h2>
+        <hr class="divider">
+        <h2 class="text-center text-lg text-uppercase my-0">Choose your option
+          <strong>and Explore</strong></h2>
+        <hr class="divider">
+
+  <div class="bg-faded p-4 my-4">
+    <div class="left-float">
+      <div class="row">
+      <div class="column">
+        <%= link_to image_tag( asset_path("Home/pic01.jpg"), width:'480', height:'270', alt:"hola"),songs_path %>
+      </div>
+      <%= link_to '<h2 class="text-center text-lg text-uppercase my-0">Songs</h2>'.html_safe, songs_path %>
+
+      <div class="column">
+        <%= link_to image_tag(asset_path("Home/pic03.jpg"), width:'480', height:'270'), albums_path %>
+      </div>
+        <%= link_to '<h2 class="text-center text-lg text-uppercase my-0">Albums</h2>'.html_safe, albums_path %>
+      <div class="column">
+        <%= link_to image_tag(asset_path("Home/pic05.jpg"), width:'480', height:'270'), playlists_path %>
+      </div>
+        <%= link_to '<h2 class="text-center text-lg text-uppercase my-0">Playlists</h2>'.html_safe, playlists_path %>
+        <hr class="divider">
+      </div>
+
+    </div>
+    <div class="left-float">
+      <div class="row">
+      <div class="column">
+        <%= link_to image_tag(asset_path("Home/pic02.jpg"), width:'480', height:'270'), artists_path %>
+      </div>
+        <%= link_to '<h2 class="text-center text-lg text-uppercase my-0">Artists</h2>'.html_safe, artists_path %>
+      <div class="column">
+        <%= link_to image_tag(asset_path("Home/pic04.jpg"), width:'480', height:'270'), posts_path %>
+      </div>
+        <%= link_to '<h2 class="text-center text-lg text-uppercase my-0">News</h2>'.html_safe, posts_path %>
+      <div class="column">
+          <%= link_to image_tag(asset_path("Home/pic06.jpg"), width:'480', height:'270'), genres_path%>
+      </div>
+          <%= link_to '<h2 class="text-center text-lg text-uppercase my-0">Genre</h2>'.html_safe, genres_path %>
+          <hr class="divider">
+     </div>
+    </div>
+  </div>
+</div>
+
+
+      <div class="bg-faded p-4 my-4">
+
+      <div class="container">
+        <hr class="divider">
+        <h2 class="text-center text-lg text-uppercase my-0">Some
+          <strong>interesting news</strong>
+        </h2>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th><h2>News</h2></th>
+            </tr>
+          </thead>
+
+          <tbody>
+          <% @posts.each do |post| %>
+              <tr>
+                <td>
+                  <h4><strong>Title: <%= link_to post.title, post %></strong></h4>
+                  <h4>Content: <%= post.body %></h4>
+                  <h5>Related artist: <%= link_to "#{post.artist.name}", post.artist %></h5>
+                  <h5>Created by: <%= link_to "#{post.user.email}", "/users/profile/#{post.user.id}" %></h5>
+                  <% if post.user == current_user %>
+                      <%= link_to 'Edit', edit_post_path(post) %>
+                      <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+                  <% end %>
+                </td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+  </div>
+
+
+    <!-- /.container -->

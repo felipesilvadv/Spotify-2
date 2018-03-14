@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= favicon_link_tag %>
+    <title>Spotify2</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+
+   <body>
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <%= link_to image_tag('favicon.ico'), home_page_Index_path, id:'logo' %>
+        <%= link_to 'Spotify2',  home_page_Index_path, id: 'logo' %>
+        <nav>
+          <ul class="nav navbar-nav navbar-right">
+            <% if current_user %>
+              <li><%= link_to 'Home', home_page_Index_path %></li>
+
+              <li><%= link_to 'Profile', users_show_path %></li>
+
+              <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+              <% if current_user.admin %>
+                <li><%= link_to 'AdminSite', rails_admin_path %></li>
+              <% end %>
+            <% else %>
+              <li><%= link_to 'Login', new_user_session_path %></li>
+            <% end %>
+          </ul>
+          </nav>
+      </div>
+          </header>
+          <div class="container">
+            <%= yield %>
+          </div>
+        </body>
+        <footer class="bg-faded text-center py-5">
+          <div class="container">
+            <p class="m-0">Copyright &copy; Grupo 10 2017</p>
+          </div>
+        </footer>
+      </html>

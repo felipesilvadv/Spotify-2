@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container">
+
+  <div class="bg-faded p-4 my-4">
+    <div class="left-float">
+      <div align="center">
+    <%= image_tag(@song.album.image, width:'250', height:'250') %>
+  </div>
+
+  </div>
+  <div class="left-float">
+    <div align="left">
+        <h6><strong>  <%= @song.name %> </strong></h6>
+        <p><strong>  Genre:</strong>
+          <%= link_to  @song.genre.name, @song.genre unless @song.genre.nil? %></p>
+        <p><strong>  Album:</strong>
+          <%= link_to "#{@song.album.title}", @song.album unless @song.album.nil?%></p>
+        <p><strong>Artist:</strong>
+          <%= link_to "#{@song.artist.name}", @song.artist unless @song.artist.nil?%></p>
+          <% if @song.user == current_user	 %>
+          <%= link_to image_tag("Songs/trash.png", width:'25', height:'25'), @song, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%= link_to image_tag("Songs/edit.svg", width:'20', height:'20'), edit_song_path(@song) %>
+          <%end	%>
+          <%= link_to 'All songs', songs_path %>
+    </div>
+  </div>
+  <div style="clear:both"></div>
+  <hr class="divider">
+ </div>
+</div>
+<div class="container">
+ <div class="bg-faded p-4 my-4">
+   <div align="center">
+     <h1>Player:</h1>
+    <iframe id="player" type="text/html" width="640" height="360" frameborder='0'
+            src=<%="http://www.youtube.com/embed/#{@video_id}?enablejsapi=1&origin=#{song_url(@song)}"%>
+    ></iframe>
+  </div>
+  </div>
+</div>
+
+</div>

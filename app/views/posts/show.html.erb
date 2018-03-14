@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container">
+  <div class="bg-faded p-4 my-4">
+    <!-- Welcome Message -->
+    <div class="text-center mt-4">
+      <h1 class="my-2"> Title: <%= @post.title %></h1>
+      <% if @post.user == current_user %>
+      <%= link_to 'Edit', edit_post_path(@post)  %> |
+      <%end  %>
+      <%= link_to 'All posts', posts_path %>
+      <hr class="divider">
+    </div>
+        <p> <%= @post.body %></p>
+        <p>
+          <h5>Related artist: <%= link_to "#{@post.artist.name}", @post.artist %></h5>
+          <h5>Created by: <%= link_to "#{@post.user.email}", "/users/profile/#{@post.user.id}" %></h5>
+          <hr class="divider">
+    </div>
+  </div>
