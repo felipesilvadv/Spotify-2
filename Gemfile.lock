@@ -312,12 +312,12 @@ DEPENDENCIES
   json
   listen (>= 3.0.5, < 3.2)
   mini_magick (~> 4.3)
-  paperclip (~> 5.0.0)
+  paperclip (~> 5.2.0)
   pg
   puma (~> 3.7)
   rails (~> 5.1.4)
   rails_12factor
-  rails_admin
+  rails_admin (~> 1.3.0)
   ratyrate
   rspotify
   sass-rails (~> 5.0)
